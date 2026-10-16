@@ -111,7 +111,7 @@ const STORIES = {
 
   if (!header || !toggle || !navLinks) return;
 
-  // Add scrolled background once user scrolls past 40px
+  // Always show a background — hero is transparent so we need it visible
   function onScroll() {
     header.classList.toggle('is-scrolled', window.scrollY > 40);
   }
@@ -119,16 +119,21 @@ const STORIES = {
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
+  // Toggle open / close
   toggle.addEventListener('click', function () {
     const isOpen = navLinks.classList.toggle('is-open');
     toggle.setAttribute('aria-expanded', String(isOpen));
+    // Update label so screen readers announce the current action
+    toggle.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
     document.body.style.overflow = isOpen ? 'hidden' : '';
   });
 
+  // Close when any nav link is clicked
   navLinks.querySelectorAll('.nav__link').forEach(function (link) {
     link.addEventListener('click', closeMobileMenu);
   });
 
+  // Escape key closes the menu
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && navLinks.classList.contains('is-open')) {
       closeMobileMenu();
@@ -138,6 +143,7 @@ const STORIES = {
   function closeMobileMenu() {
     navLinks.classList.remove('is-open');
     toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', 'Open navigation menu');
     document.body.style.overflow = '';
     toggle.focus();
   }

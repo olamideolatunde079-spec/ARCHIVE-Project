@@ -23,13 +23,12 @@
           href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&display=swap" />
   </noscript>
 
-  <!-- Font Awesome — non-blocking (icons are decorative; text still readable without them) -->
+  <!-- Font Awesome — loaded synchronously so icons are visible immediately -->
   <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
         integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plh7eqjn08mK4+9CgXuZn5sHp3CYg=="
         crossorigin="anonymous"
-        media="print"
-        onload="this.media='all'" />
+        referrerpolicy="no-referrer" />
 
   <!-- Main stylesheet (synchronous — needed for first paint) -->
   <link rel="stylesheet" href="css/style.css" />
@@ -67,6 +66,13 @@
         </ul>
 
         <div class="nav__actions">
+          <!-- Search trigger button -->
+          <button class="nav__search-btn" id="nav-search-btn"
+                  aria-label="Open search"
+                  aria-expanded="false"
+                  aria-controls="search-overlay">
+            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+          </button>
           <a href="#explore" class="btn btn--nav">Visit Archive</a>
           <button class="nav__toggle" id="nav-toggle"
                   aria-controls="nav-links"
@@ -827,26 +833,10 @@
           </ul>
         </nav>
 
-        <div class="footer__connect">
-          <h3 class="footer__nav-heading">Stay Connected</h3>
-          <p class="footer__connect-text">Follow ARCHIVE as we continue adding to the collection.</p>
-          <div class="footer__socials" aria-label="Social media links">
-            <a href="#" class="footer__social-link" aria-label="ARCHIVE on Instagram">
-              <i class="fa-brands fa-instagram" aria-hidden="true"></i>
-            </a>
-            <a href="#" class="footer__social-link" aria-label="ARCHIVE on X (Twitter)">
-              <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
-            </a>
-            <a href="#" class="footer__social-link" aria-label="ARCHIVE on Facebook">
-              <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
-            </a>
-          </div>
-        </div>
-
       </div>
 
       <div class="footer__bottom">
-        <p class="footer__closing">Our history is not a footnote — it's the foundation.</p>
+        <p class="footer__legal">Nigeria's Creative History Museum.</p>
       </div>
     </div>
   </footer>
@@ -864,6 +854,7 @@
         <span class="story-modal__category" id="modal-category"></span>
         <button class="story-modal__close" id="modal-close" aria-label="Close story">
           <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+          <span class="story-modal__close-fallback" aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="story-modal__image">
