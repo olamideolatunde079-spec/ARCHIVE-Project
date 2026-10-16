@@ -108,8 +108,9 @@ const STORIES = {
   const header   = document.getElementById('site-header');
   const toggle   = document.getElementById('nav-toggle');
   const navLinks = document.getElementById('nav-links');
+  const closeBtn = document.getElementById('nav-menu-close');
 
-  if (!header || !toggle || !navLinks) return;
+  if (!header || !toggle || !navLinks || !closeBtn) return;
 
   // Always show a background — hero is transparent so we need it visible
   function onScroll() {
@@ -122,11 +123,13 @@ const STORIES = {
   // Toggle open / close
   toggle.addEventListener('click', function () {
     const isOpen = navLinks.classList.toggle('is-open');
+    header.classList.toggle('is-menu-open', isOpen);
     toggle.setAttribute('aria-expanded', String(isOpen));
     // Update label so screen readers announce the current action
     toggle.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
-    document.body.style.overflow = isOpen ? 'hidden' : '';
   });
+
+  closeBtn.addEventListener('click', closeMobileMenu);
 
   // Close when any nav link is clicked
   navLinks.querySelectorAll('.nav__link').forEach(function (link) {
@@ -142,9 +145,9 @@ const STORIES = {
 
   function closeMobileMenu() {
     navLinks.classList.remove('is-open');
+    header.classList.remove('is-menu-open');
     toggle.setAttribute('aria-expanded', 'false');
     toggle.setAttribute('aria-label', 'Open navigation menu');
-    document.body.style.overflow = '';
     toggle.focus();
   }
 })();
@@ -313,18 +316,12 @@ function applyStoryFilter(filter) {
     });
   });
 
-  backdrop.addEventListener('click', function () {
-    if (!modal.classList.contains('is-closing')) closeModal();
-  });
+  backdrop.addEventListener('click', closeModal);
 
-  closeBtn.addEventListener('click', function () {
-    if (!modal.classList.contains('is-closing')) closeModal();
-  });
+  closeBtn.addEventListener('click', closeModal);
 
   document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && !modal.hidden && !modal.classList.contains('is-closing')) {
-      closeModal();
-    }
+    if (e.key === 'Escape' && !modal.hidden) closeModal();
   });
 
   function openModal(card) {
@@ -362,7 +359,6 @@ function applyStoryFilter(filter) {
 
     triggerElement = card;
     modal.hidden   = false;
-    document.body.style.overflow = 'hidden';
 
     if (modalPanel) modalPanel.scrollTop = 0;
 
@@ -371,8 +367,6 @@ function applyStoryFilter(filter) {
   }
 
   function closeModal() {
-    modal.classList.add('is-closing');
-    document.body.style.overflow = '';
     modal.removeEventListener('keydown', trapFocus);
 
     if (triggerElement) {
@@ -380,10 +374,7 @@ function applyStoryFilter(filter) {
       triggerElement = null;
     }
 
-    setTimeout(function () {
-      modal.hidden = true;
-      modal.classList.remove('is-closing');
-    }, 310);
+    modal.hidden = true;
   }
 
   function trapFocus(e) {
@@ -407,7 +398,115 @@ function applyStoryFilter(filter) {
 
 
 /* ==========================================================================
-   8. TIMELINE — arrows + drag scroll + keyboard
+   8. SEARCH
+   ========================================================================== */
+
+(function initSearch() {
+  const trigger = document.getElementById('nav-search-btn');
+  const overlay = document.getElementById('search-overlay');
+  const backdrop = document.getElementById('search-backdrop');
+  const closeBtn = document.getElementById('search-close');
+  const input = document.getElementById('search-input');
+  const results = document.getElementById('search-results');
+
+  if (!trigger || !overlay || !backdrop || !closeBtn || !input || !results) return;
+
+  const stories = Object.keys(STORIES).map(function (id) {
+    const story = STORIES[id];
+    return {
+      id: id,
+      category: story.category,
+      title: story.title,
+      text: story.content.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim()
+    };
+  });
+
+  trigger.addEventListener('click', openSearch);
+  closeBtn.addEventListener('click', closeSearch);
+  backdrop.addEventListener('click', closeSearch);
+  input.addEventListener('input', renderResults);
+
+  results.addEventListener('click', function (event) {
+    const chip = event.target.closest('[data-search-term]');
+    if (chip) {
+      input.value = chip.dataset.searchTerm;
+      renderResults();
+      input.focus();
+      return;
+    }
+
+    const result = event.target.closest('[data-story-result]');
+    if (!result) return;
+
+    const card = document.querySelector('.story-card[data-story="' + result.dataset.storyResult + '"]');
+    closeSearch();
+    if (card) card.click();
+  });
+
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape' && !overlay.hidden) closeSearch();
+  });
+
+  function openSearch() {
+    overlay.hidden = false;
+    trigger.setAttribute('aria-expanded', 'true');
+    input.focus();
+  }
+
+  function closeSearch() {
+    overlay.hidden = true;
+    trigger.setAttribute('aria-expanded', 'false');
+    input.value = '';
+    renderResults();
+    trigger.focus();
+  }
+
+  function renderResults() {
+    const query = input.value.trim().toLowerCase();
+    if (!query) {
+      results.innerHTML = '<div class="search-overlay__hint"><span>Search stories by title, discipline, or topic.</span><div class="search-hint__chips"><button class="search-hint__chip" type="button" data-search-term="photography">Photography</button><button class="search-hint__chip" type="button" data-search-term="music">Music</button><button class="search-hint__chip" type="button" data-search-term="fashion">Fashion</button><button class="search-hint__chip" type="button" data-search-term="design">Design</button></div></div>';
+      return;
+    }
+
+    const matches = stories.filter(function (story) {
+      return (story.title + ' ' + story.category + ' ' + story.text).toLowerCase().includes(query);
+    });
+
+    if (!matches.length) {
+      results.innerHTML = '<p class="search-overlay__empty">No stories found. Try another search.</p>';
+      return;
+    }
+
+    results.replaceChildren();
+    matches.forEach(function (story) {
+      const button = document.createElement('button');
+      button.className = 'search-result';
+      button.type = 'button';
+      button.dataset.storyResult = story.id;
+
+      const category = document.createElement('span');
+      category.className = 'search-result__category';
+      category.textContent = story.category;
+
+      const title = document.createElement('span');
+      title.className = 'search-result__title';
+      title.textContent = story.title;
+
+      const excerpt = document.createElement('span');
+      excerpt.className = 'search-result__excerpt';
+      excerpt.textContent = story.text;
+
+      const content = document.createElement('span');
+      content.append(category, title, excerpt);
+      button.append(content);
+      results.append(button);
+    });
+  }
+})();
+
+
+/* ==========================================================================
+   9. TIMELINE — arrows + drag scroll + keyboard
    ========================================================================== */
 
 (function initTimeline() {
@@ -472,7 +571,7 @@ function applyStoryFilter(filter) {
 
 
 /* ==========================================================================
-   9. BACK TO TOP
+   10. BACK TO TOP
    ========================================================================== */
 
 (function initBackToTop() {
@@ -496,7 +595,7 @@ function applyStoryFilter(filter) {
 
 
 /* ==========================================================================
-   10. SCROLL REVEAL (IntersectionObserver — zero scroll listeners)
+   11. SCROLL REVEAL (IntersectionObserver — zero scroll listeners)
    ========================================================================== */
 
 (function initReveal() {
@@ -536,7 +635,7 @@ function applyStoryFilter(filter) {
 
 
 /* ==========================================================================
-   11. SCROLL INDICATOR — pause animation after first scroll
+   12. SCROLL INDICATOR — pause animation after first scroll
    ========================================================================== */
 
 (function initScrollIndicator() {
@@ -555,7 +654,7 @@ function applyStoryFilter(filter) {
 
 
 /* ==========================================================================
-   12. FOOTER COLLECTION LINKS
+   13. FOOTER COLLECTION LINKS
    ========================================================================== */
 
 (function initFooterCollectionLinks() {

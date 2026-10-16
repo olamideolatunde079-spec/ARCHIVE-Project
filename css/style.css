@@ -529,8 +529,17 @@ button {
   color: var(--color-red);
 }
 
-/* Hide "Visit Archive" CTA on narrow mobile to keep controls accessible */
-@media (max-width: 479px) {
+@media (max-width: 899px) {
+  .nav__search-btn {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    font-size: 1.1rem;
+  }
+}
+
+/* Keep the search and menu controls accessible on mobile. */
+@media (max-width: 767px) {
   .nav__actions .btn--nav {
     display: none;
   }
@@ -632,6 +641,33 @@ button {
 
 .nav__links.is-open .nav__link::after { display: none; }
 
+.nav__menu-close {
+  display: none;
+}
+
+.site-header.is-menu-open .nav__menu-close {
+  position: fixed;
+  top: calc(var(--nav-height) + var(--space-3));
+  right: var(--container-pad);
+  z-index: 1002;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-white);
+  background: var(--color-red);
+  border: 2px solid var(--color-white);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.55);
+  font-size: 1.65rem;
+  line-height: 1;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.site-header.is-menu-open .nav__menu-close:hover {
+  background: #9e1b2a;
+}
+
 /* Desktop breakpoint — show links inline, hide hamburger */
 @media (min-width: 900px) {
   .nav__links {
@@ -644,6 +680,7 @@ button {
     animation: none;
   }
   .nav__toggle { display: none; }
+  .nav__menu-close { display: none !important; }
   /* Restore "Visit Archive" on desktop */
   .nav__actions .btn--nav { display: inline-flex; }
 }
@@ -1662,17 +1699,6 @@ button {
   pointer-events: auto;
 }
 
-/* is-closing: JS adds this class while the fade-out transition plays,
-   then sets hidden=true once it's done */
-.story-modal.is-closing {
-  opacity: 0;
-  pointer-events: none;
-}
-
-.story-modal.is-closing .story-modal__panel {
-  transform: translateY(20px);
-}
-
 /* Removed [hidden] display override — JS toggles hidden attribute */
 .story-modal[hidden] {
   display: none;
@@ -1739,6 +1765,7 @@ button {
 .story-modal__close {
   width: 44px;
   height: 44px;
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1780,6 +1807,21 @@ button {
   background: var(--color-black);
   color: var(--color-white);
   border-color: var(--color-black);
+}
+
+@media (max-width: 899px) {
+  .story-modal__close {
+    width: 56px;
+    height: 56px;
+    background: var(--color-black);
+    border: 2px solid var(--color-black);
+    color: var(--color-white);
+  }
+
+  .story-modal__close:hover {
+    background: var(--color-red);
+    border-color: var(--color-red);
+  }
 }
 
 /* Modal image */
@@ -2080,6 +2122,8 @@ button {
   border: none;
   cursor: pointer;
   font-size: 1.3rem;
+  position: relative;
+  z-index: 2;
   /* Sits at the top-right of the panel — unmissable */
   transition: background var(--duration) var(--ease-out);
   -webkit-tap-highlight-color: transparent;
