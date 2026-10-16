@@ -6,35 +6,32 @@
   <meta name="description" content="ARCHIVE — Nigeria's Creative History Museum. A digital museum celebrating Nigeria's creative history across photography, music, fashion, and design." />
   <title>ARCHIVE — Nigeria's Creative History Museum</title>
 
-  <!-- Preconnect for fonts (reduces DNS + TLS handshake time) -->
+  
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-  <!-- Google Fonts — non-blocking load.
-       DM Sans dropped (saves 3 font files); Inter weight 300 removed (unused).
-       media="print" trick: browser fetches it as low-priority, then swaps in. -->
+  
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&display=swap"
         media="print"
         onload="this.media='all'" />
-  <!-- Fallback for no-JS -->
+  
   <noscript>
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&display=swap" />
   </noscript>
 
-  <!-- Font Awesome — loaded synchronously so icons are visible immediately -->
+  
   <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
         integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw=="
         crossorigin="anonymous"
         referrerpolicy="no-referrer" />
 
-  <!-- Main stylesheet (synchronous — needed for first paint) -->
+  
   <link rel="stylesheet" href="css/style.css" />
 
-  <!-- Preload the LCP hero image so the browser fetches it at top priority,
-       not after parsing the full HTML body -->
+  
   <link rel="preload"
         as="image"
         href="assets/images/optimized/hero-main.webp"
@@ -45,9 +42,7 @@
 
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
-  <!-- =====================================================
-       NAVIGATION
-  ====================================================== -->
+  
   <header class="site-header" id="site-header" role="banner">
     <nav class="nav" aria-label="Main navigation">
       <div class="nav__inner">
@@ -70,7 +65,7 @@
         </button>
 
         <div class="nav__actions">
-          <!-- Search trigger button -->
+          
           <button class="nav__search-btn" id="nav-search-btn"
                   aria-label="Open search"
                   aria-expanded="false"
@@ -94,15 +89,12 @@
 
   <main id="main-content">
 
-    <!-- ===================================================
-         HERO
-    ==================================================== -->
+    
     <section class="hero" id="home" aria-labelledby="hero-headline">
 
       <div class="hero__collage" aria-hidden="true">
 
-        <!-- MAIN HERO IMAGE — optimized WebP, 254KB (was 2.1MB)
-             Chief and Household at Ifako, Calabar — late 19th century. Public domain. -->
+        
         <div class="hero__img hero__img--main">
           <picture>
             <source srcset="assets/images/optimized/hero-main.webp" type="image/webp" />
@@ -115,7 +107,7 @@
           </picture>
         </div>
 
-        <!-- HERO ACCENT 1 — Ransome-Kuti family c.1940. Public domain. -->
+        
         <div class="hero__img hero__img--accent1">
           <picture>
             <source srcset="assets/images/optimized/hero-accent-1.webp" type="image/webp" />
@@ -128,7 +120,7 @@
           </picture>
         </div>
 
-        <!-- HERO ACCENT 2 — Ife bronze head. CC BY-SA 4.0 CloudyMyst. -->
+        
         <div class="hero__img hero__img--accent2">
           <picture>
             <source srcset="assets/images/optimized/hero-accent-2.webp" type="image/webp" />
@@ -178,9 +170,7 @@
 
     </section>
 
-    <!-- ===================================================
-         EXPLORE THE ARCHIVE — Collection Cards
-    ==================================================== -->
+    
     <section class="explore" id="explore" aria-labelledby="explore-heading">
       <div class="container">
 
@@ -207,10 +197,10 @@
 
         <div class="collections" role="list">
 
-          <!-- Photography -->
+          
           <article class="collection-card" role="listitem" data-discipline="photography">
             <div class="collection-card__image">
-              <!-- Market in Lagos — CC BY 2.0 via Wikimedia Commons -->
+              
               <picture>
                 <source srcset="assets/images/optimized/card-photography.webp" type="image/webp" />
                 <img src="assets/images/optimized/card-photography.jpg"
@@ -232,10 +222,10 @@
             </div>
           </article>
 
-          <!-- Music -->
+          
           <article class="collection-card" role="listitem" data-discipline="music">
             <div class="collection-card__image">
-              <!-- Fela Shrine, Lagos — Public domain (Kaizenify) -->
+              
               <picture>
                 <source srcset="assets/images/optimized/card-music.webp" type="image/webp" />
                 <img src="assets/images/optimized/card-music.jpg"
@@ -257,10 +247,10 @@
             </div>
           </article>
 
-          <!-- Fashion -->
+          
           <article class="collection-card" role="listitem" data-discipline="fashion">
             <div class="collection-card__image">
-              <!-- Gentlemen of Kano, 1960 — CC BY 2.0 Dr Mary Gillham Archive Project -->
+              
               <picture>
                 <source srcset="assets/images/optimized/card-fashion.webp" type="image/webp" />
                 <img src="assets/images/optimized/card-fashion.jpg"
@@ -282,10 +272,10 @@
             </div>
           </article>
 
-          <!-- Design -->
+          
           <article class="collection-card" role="listitem" data-discipline="design">
             <div class="collection-card__image">
-              <!-- Ife bronze head — CC BY-SA 4.0 CloudyMyst -->
+              
               <picture>
                 <source srcset="assets/images/optimized/card-design.webp" type="image/webp" />
                 <img src="assets/images/optimized/card-design.jpg"
@@ -307,12 +297,12 @@
             </div>
           </article>
 
-        </div><!-- /.collections -->
+        </div>
 
-        <!-- ─── EXPANDED PHOTO GRID (shown below the 4 main cards) ─── -->
+        
         <div class="photo-grid" aria-label="Archive photo collection" role="list">
 
-          <!-- Photography sub-collection -->
+          
           <figure class="photo-grid__item" role="listitem" data-discipline="photography">
             <picture>
               <source srcset="assets/images/optimized/photo-tinubu-sq.webp" type="image/webp" />
@@ -343,7 +333,7 @@
             <figcaption>Lagos market scene</figcaption>
           </figure>
 
-          <!-- Music sub-collection -->
+          
           <figure class="photo-grid__item" role="listitem" data-discipline="music">
             <picture>
               <source srcset="assets/images/optimized/music-fela-1986.webp" type="image/webp" />
@@ -384,7 +374,7 @@
             <figcaption>Burna Boy, Nativeland Concert, Lagos <span>2016</span></figcaption>
           </figure>
 
-          <!-- Fashion sub-collection -->
+          
           <figure class="photo-grid__item" role="listitem" data-discipline="fashion">
             <picture>
               <source srcset="assets/images/optimized/fashion-aso-oke.webp" type="image/webp" />
@@ -435,7 +425,7 @@
             <figcaption>Urhobo traditional dress</figcaption>
           </figure>
 
-          <!-- Design sub-collection -->
+          
           <figure class="photo-grid__item" role="listitem" data-discipline="design">
             <picture>
               <source srcset="assets/images/optimized/design-indigo-dye.webp" type="image/webp" />
@@ -486,14 +476,12 @@
             <figcaption>Bida metalwork, carved calabashes <span>1960</span></figcaption>
           </figure>
 
-        </div><!-- /.photo-grid -->
+        </div>
 
-      </div><!-- /.container -->
+      </div>
     </section>
 
-    <!-- ===================================================
-         FEATURED STORIES
-    ==================================================== -->
+    
     <section class="stories" id="stories" aria-labelledby="stories-heading">
       <div class="container">
 
@@ -594,9 +582,7 @@
       </div>
     </section>
 
-    <!-- ===================================================
-         TIMELINE
-    ==================================================== -->
+    
     <section class="timeline" id="timeline" aria-labelledby="timeline-heading">
       <div class="container">
 
@@ -761,16 +747,13 @@
       </div>
     </section>
 
-    <!-- ===================================================
-         ABOUT
-    ==================================================== -->
+    
     <section class="about" id="about" aria-labelledby="about-heading">
       <div class="container">
         <div class="about__inner">
 
           <div class="about__image">
-            <!-- Sir Abubakar Tafawa Balewa with Mayor of Port Harcourt.
-                 CC BY-SA 4.0 — Francis Ibekwe via Wikimedia Commons -->
+            
             <picture>
               <source srcset="assets/images/optimized/about-main.webp" type="image/webp" />
               <img src="assets/images/optimized/about-main.jpg"
@@ -803,9 +786,7 @@
 
   </main>
 
-  <!-- =====================================================
-       FOOTER
-  ====================================================== -->
+  
   <footer class="site-footer" id="footer" role="contentinfo">
     <div class="container">
       <div class="footer__inner">
@@ -845,7 +826,7 @@
     </div>
   </footer>
 
-  <!-- Search overlay -->
+  
   <div class="search-overlay" id="search-overlay" role="dialog" aria-modal="true"
        aria-label="Search the archive" hidden>
     <div class="search-overlay__backdrop" id="search-backdrop"></div>
@@ -879,7 +860,7 @@
     <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
   </button>
 
-  <!-- Story modal -->
+  
   <div class="story-modal" id="story-modal" role="dialog" aria-modal="true"
        aria-labelledby="modal-title" hidden>
     <div class="story-modal__backdrop" id="modal-backdrop"></div>
@@ -903,7 +884,7 @@
     </div>
   </div>
 
-  <!-- defer: script runs after HTML is fully parsed, no render blocking -->
+  
   <script src="js/script.js" defer></script>
 
 </body>
