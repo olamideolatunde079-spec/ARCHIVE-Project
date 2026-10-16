@@ -1,24 +1,7 @@
-/**
- * ARCHIVE — Nigeria's Creative History Museum
- * Main JavaScript — Performance-optimised build
- *
- * Key fixes applied:
- *  - All DOM queries cached once at startup (no repeated querySelector in handlers)
- *  - navHeight read once and cached; refreshed only on resize
- *  - scroll event listeners all marked { passive: true }
- *  - applyStoryFilter uses cached NodeLists
- *  - Scroll indicator animation paused after first scroll
- *  - console.log removed from production path
- *  - Chained setTimeout in footer links simplified
- */
+
 
 'use strict';
 
-/* ==========================================================================
-   SHARED STATE — queried once, reused everywhere
-   ========================================================================== */
-
-// Cache nav height once; update on resize (reading offsetHeight forces reflow)
 let _navHeight = 64;
 
 function getNavHeight() {
@@ -30,16 +13,10 @@ window.addEventListener('resize', function () {
   if (h) _navHeight = h.offsetHeight || 64;
 }, { passive: true });
 
-// Run once at startup
 document.addEventListener('DOMContentLoaded', function () {
   const h = document.getElementById('site-header');
   if (h) _navHeight = h.offsetHeight || 64;
 });
-
-
-/* ==========================================================================
-   1. STORY DATA
-   ========================================================================== */
 
 const STORIES = {
   'faces-of-lagos': {
@@ -99,11 +76,6 @@ const STORIES = {
   }
 };
 
-
-/* ==========================================================================
-   2. NAVIGATION
-   ========================================================================== */
-
 (function initNavigation() {
   const header   = document.getElementById('site-header');
   const toggle   = document.getElementById('nav-toggle');
@@ -112,7 +84,6 @@ const STORIES = {
 
   if (!header || !toggle || !navLinks || !closeBtn) return;
 
-  // Always show a background — hero is transparent so we need it visible
   function onScroll() {
     header.classList.toggle('is-scrolled', window.scrollY > 40);
   }
@@ -120,23 +91,20 @@ const STORIES = {
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
-  // Toggle open / close
   toggle.addEventListener('click', function () {
     const isOpen = navLinks.classList.toggle('is-open');
     header.classList.toggle('is-menu-open', isOpen);
     toggle.setAttribute('aria-expanded', String(isOpen));
-    // Update label so screen readers announce the current action
+
     toggle.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
   });
 
   closeBtn.addEventListener('click', closeMobileMenu);
 
-  // Close when any nav link is clicked
   navLinks.querySelectorAll('.nav__link').forEach(function (link) {
     link.addEventListener('click', closeMobileMenu);
   });
 
-  // Escape key closes the menu
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && navLinks.classList.contains('is-open')) {
       closeMobileMenu();
@@ -152,11 +120,6 @@ const STORIES = {
   }
 })();
 
-
-/* ==========================================================================
-   3. SMOOTH SECTION SCROLLING
-   ========================================================================== */
-
 (function initSmoothScroll() {
   document.addEventListener('click', function (e) {
     const anchor = e.target.closest('a[href^="#"]');
@@ -170,16 +133,10 @@ const STORIES = {
 
     e.preventDefault();
 
-    // Use cached navHeight — avoids triggering a layout reflow on every click
     const top = target.getBoundingClientRect().top + window.scrollY - getNavHeight();
     window.scrollTo({ top, behavior: 'smooth' });
   });
 })();
-
-
-/* ==========================================================================
-   4. ACTIVE NAV LINK ON SCROLL (IntersectionObserver — no scroll listener)
-   ========================================================================== */
 
 (function initActiveNav() {
   const navLinks = document.querySelectorAll('.nav__link[data-section]');
@@ -202,13 +159,8 @@ const STORIES = {
   });
 })();
 
-
-/* ==========================================================================
-   5. COLLECTION CARDS → FILTER + SCROLL TO STORIES
-   ========================================================================== */
-
 (function initCollectionCardLinks() {
-  // Cache stories section reference
+
   const storiesSection = document.getElementById('stories');
 
   document.querySelectorAll('.collection-card__link').forEach(function (btn) {
@@ -221,20 +173,13 @@ const STORIES = {
         window.scrollTo({ top, behavior: 'smooth' });
       }
 
-      // Apply filter after scroll starts (reduced from 400ms)
       setTimeout(function () { applyStoryFilter(filter); }, 300);
     });
   });
 })();
 
-
-/* ==========================================================================
-   6. FILTER TABS
-   ========================================================================== */
-
-// Cache at module level — queried once at startup, reused by applyStoryFilter
 const _storyCards  = [];
-const _photoItems  = [];  // photo-grid items also filtered by discipline
+const _photoItems  = [];
 const _filterTabs  = [];
 let   _emptyMsg    = null;
 
@@ -242,7 +187,6 @@ let   _emptyMsg    = null;
   const tabs = document.querySelectorAll('.filter-tab');
   if (!tabs.length) return;
 
-  // Populate caches once
   document.querySelectorAll('.story-card').forEach(function (c)     { _storyCards.push(c); });
   document.querySelectorAll('.photo-grid__item').forEach(function (c){ _photoItems.push(c); });
   tabs.forEach(function (t) { _filterTabs.push(t); });
@@ -255,21 +199,15 @@ let   _emptyMsg    = null;
   });
 })();
 
-/**
- * applyStoryFilter — filters both story cards AND photo-grid items.
- * Uses cached arrays; zero querySelectorAll calls per invocation.
- */
 function applyStoryFilter(filter) {
   let visible = 0;
 
-  // Filter featured story cards
   _storyCards.forEach(function (card) {
     const show = filter === 'all' || card.dataset.discipline === filter;
     card.classList.toggle('is-hidden', !show);
     if (show) visible++;
   });
 
-  // Filter expanded photo grid
   _photoItems.forEach(function (item) {
     const show = filter === 'all' || item.dataset.discipline === filter;
     item.classList.toggle('is-hidden', !show);
@@ -277,18 +215,12 @@ function applyStoryFilter(filter) {
 
   if (_emptyMsg) _emptyMsg.hidden = visible > 0;
 
-  // Sync tab active states
   _filterTabs.forEach(function (tab) {
     const match = tab.getAttribute('data-filter') === filter;
     tab.classList.toggle('filter-tab--active', match);
     tab.setAttribute('aria-selected', String(match));
   });
 }
-
-
-/* ==========================================================================
-   7. STORY MODAL
-   ========================================================================== */
 
 (function initStoryModal() {
   const modal    = document.getElementById('story-modal');
@@ -297,7 +229,6 @@ function applyStoryFilter(filter) {
 
   if (!modal || !backdrop || !closeBtn) return;
 
-  // Cache modal inner elements
   const modalCategory    = document.getElementById('modal-category');
   const modalTitle       = document.getElementById('modal-title');
   const modalContent     = document.getElementById('modal-content');
@@ -308,7 +239,6 @@ function applyStoryFilter(filter) {
 
   let triggerElement = null;
 
-  // Attach click + keyboard on story cards
   document.querySelectorAll('.story-card').forEach(function (card) {
     card.addEventListener('click', function () { openModal(card); });
     card.addEventListener('keydown', function (e) {
@@ -328,13 +258,11 @@ function applyStoryFilter(filter) {
     const story = STORIES[card.getAttribute('data-story')];
     if (!story) return;
 
-    // Populate — use cached element refs
     modalCategory.textContent = story.category;
     modalTitle.textContent    = story.title;
     modalContent.innerHTML    = story.content;
     modalCredit.textContent   = story.credit || '';
 
-    // Image with WebP + JPEG fallback
     modalImg.src = story.image;
     modalImg.alt = story.imageAlt || story.title;
     modalImg.style.opacity = '0';
@@ -344,7 +272,7 @@ function applyStoryFilter(filter) {
       if (modalPlaceholder) modalPlaceholder.style.opacity = '0';
     };
     modalImg.onerror = function () {
-      // Try JPEG fallback
+
       if (story.imageFallback && modalImg.src !== location.origin + '/' + story.imageFallback) {
         modalImg.src = story.imageFallback;
       } else {
@@ -395,11 +323,6 @@ function applyStoryFilter(filter) {
     }
   }
 })();
-
-
-/* ==========================================================================
-   8. SEARCH
-   ========================================================================== */
 
 (function initSearch() {
   const trigger = document.getElementById('nav-search-btn');
@@ -504,11 +427,6 @@ function applyStoryFilter(filter) {
   }
 })();
 
-
-/* ==========================================================================
-   9. TIMELINE — arrows + drag scroll + keyboard
-   ========================================================================== */
-
 (function initTimeline() {
   const wrapper = document.getElementById('timeline-wrapper');
   const prevBtn = document.getElementById('timeline-prev');
@@ -534,7 +452,6 @@ function applyStoryFilter(filter) {
   wrapper.addEventListener('scroll', updateArrows, { passive: true });
   updateArrows();
 
-  // Mouse drag
   let isDragging = false, startX = 0, startScroll = 0;
 
   wrapper.addEventListener('mousedown', function (e) {
@@ -544,7 +461,6 @@ function applyStoryFilter(filter) {
     wrapper.style.cursor = 'grabbing';
   });
 
-  // Single document mouseup listener, attached once
   document.addEventListener('mouseup', function () {
     if (isDragging) {
       isDragging = false;
@@ -558,7 +474,6 @@ function applyStoryFilter(filter) {
     wrapper.scrollLeft = startScroll - (x - startX) * 1.4;
   }, { passive: true });
 
-  // Keyboard scrolling
   wrapper.setAttribute('tabindex', '0');
   wrapper.setAttribute('role', 'region');
   wrapper.setAttribute('aria-label', 'Scrollable creative history timeline');
@@ -568,11 +483,6 @@ function applyStoryFilter(filter) {
     if (e.key === 'ArrowLeft')  { e.preventDefault(); wrapper.scrollBy({ left: -SCROLL_AMOUNT, behavior: 'smooth' }); }
   });
 })();
-
-
-/* ==========================================================================
-   10. BACK TO TOP
-   ========================================================================== */
 
 (function initBackToTop() {
   const btn = document.getElementById('back-to-top');
@@ -593,13 +503,8 @@ function applyStoryFilter(filter) {
   });
 })();
 
-
-/* ==========================================================================
-   11. SCROLL REVEAL (IntersectionObserver — zero scroll listeners)
-   ========================================================================== */
-
 (function initReveal() {
-  // Skip if user prefers reduced motion — don't even attach the observer
+
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   const selectors = [
@@ -616,7 +521,6 @@ function applyStoryFilter(filter) {
 
   elements.forEach(function (el) { el.classList.add('reveal'); });
 
-  // Stagger cards inside their parent grid
   document.querySelectorAll('.collections, .stories-grid').forEach(function (group) {
     group.classList.add('reveal-group');
   });
@@ -625,18 +529,13 @@ function applyStoryFilter(filter) {
     entries.forEach(function (entry) {
       if (entry.isIntersecting) {
         entry.target.classList.add('is-visible');
-        observer.unobserve(entry.target); // Animate once, then stop watching
+        observer.unobserve(entry.target);
       }
     });
   }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 
   elements.forEach(function (el) { observer.observe(el); });
 })();
-
-
-/* ==========================================================================
-   12. SCROLL INDICATOR — pause animation after first scroll
-   ========================================================================== */
 
 (function initScrollIndicator() {
   const arrow = document.querySelector('.hero__scroll-arrow');
@@ -652,11 +551,6 @@ function applyStoryFilter(filter) {
   window.addEventListener('scroll', pauseOnScroll, { passive: true });
 })();
 
-
-/* ==========================================================================
-   13. FOOTER COLLECTION LINKS
-   ========================================================================== */
-
 (function initFooterCollectionLinks() {
   const storiesSection = document.getElementById('stories');
 
@@ -665,7 +559,6 @@ function applyStoryFilter(filter) {
       e.preventDefault();
       const filter = link.getAttribute('data-filter-target');
 
-      // Scroll to stories section and apply filter — simplified single scroll
       if (storiesSection) {
         const top = storiesSection.getBoundingClientRect().top + window.scrollY - getNavHeight();
         window.scrollTo({ top, behavior: 'smooth' });
