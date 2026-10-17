@@ -1,6 +1,12 @@
 # ARCHIVE — Nigeria's Creative History Museum
 
-A premium, competition-ready landing page celebrating Nigeria's creative history across photography, music, fashion, and design.
+A responsive digital museum celebrating Nigerian photography, music, fashion, design, and cultural memory.
+
+## Visual direction
+
+The current page uses an editorial archive system: layered photographic prints, a newspaper-inspired Gazette, varied collection treatments, a tactile photo collection drawer, and a charcoal exhibition timeline with antique-brass details. Its mineral-sage paper palette and textile-like CSS textures are original to the project; historical photographs remain local assets with source and licence notes in `assets/images/history/IMAGE-CREDITS.md`.
+
+The archive lens pairs two Lagos photographs listed in the project image inventory: Tinubu Square (2014) and Igbosere Road (2010). They show different locations and are not presented as a before-and-after. The comparison slider supports touch, pointer, and keyboard input.
 
 ---
 
@@ -42,15 +48,33 @@ Then open `http://localhost:8000`.
 
 ---
 
+## Archive interactions
+
+- The hero combines archival images, a printed catalogue reference, and a slow-moving subject strip. Both the image reveal and strip stop when reduced motion is requested.
+- The photo collection opens from a keyboard-operable drawer; selecting a period moves the timeline to the matching entry.
+- Collection photographs are keyboard-operable and open a details view with collection, date, context, image credit, and a source link where the original file record is available.
+- Collection filters apply to both the catalogue and featured stories.
+- Search and story views support Escape, focus return, focus containment, and background scroll locking.
+- The mobile archive drawer has a visible close control and closes on Escape, link selection, and desktop resize.
+
+## Image-source record status
+
+All image paths used by the website resolve to local optimized assets. The credits file includes the source pages retained in the project and explicitly lists image records that still need their exact Commons page or creator verified. Do not treat the project inventory alone as complete attribution for those entries.
+
+---
+
 ## Photographs Included
 
-All images are in `assets/images/optimized/` as WebP + JPEG fallback pairs.
-Sources and licenses are documented in `assets/images/history/IMAGE-CREDITS.md`.
+Images are in `assets/images/optimized/` as WebP + JPEG fallback pairs. Source pages, licence details, and any remaining verification gaps are tracked in `assets/images/history/IMAGE-CREDITS.md`.
 
-### Photography (3 images)
+### Photography (7 images)
 - Tinubu Square, Lagos Island — 2014. CC BY 2.0
 - Igbosere Road book stalls, Lagos Island — 2010. CC BY 2.0
 - Lagos market scene. CC BY 2.0
+- Ransome-Kuti family — c. 1940. Public domain
+- Kano market portrait — 1960. CC BY 2.0
+- Obafemi Awolowo — independence era. Public domain
+- Sir Abubakar Tafawa Balewa with the Mayor of Port Harcourt. CC BY-SA 4.0
 
 ### Music (6 images)
 - Fela Kuti, 1970. CC BY-SA 3.0

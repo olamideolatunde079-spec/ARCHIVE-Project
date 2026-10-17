@@ -10,22 +10,31 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
   <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap"
         media="print"
         onload="this.media='all'" />
 
   <noscript>
     <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&display=swap" />
+          href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" />
   </noscript>
 
   <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
         integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw=="
         crossorigin="anonymous"
-        referrerpolicy="no-referrer" />
+        referrerpolicy="no-referrer"
+        media="print"
+        onload="this.media='all'" />
+  <noscript>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer" />
+  </noscript>
 
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/redesign.css" />
 
   <link rel="preload"
         as="image"
@@ -34,8 +43,6 @@
         type="image/webp" />
 </head>
 <body>
-
-  <a href="#main-content" class="skip-link">Skip to main content</a>
 
   <header class="site-header" id="site-header" role="banner">
     <nav class="nav" aria-label="Main navigation">
@@ -48,8 +55,9 @@
 
         <ul class="nav__links" id="nav-links" role="list">
           <li><a href="#home"     class="nav__link" data-section="home">Home</a></li>
-          <li><a href="#explore"  class="nav__link" data-section="explore">Explore</a></li>
-          <li><a href="#stories"  class="nav__link" data-section="stories">Stories</a></li>
+          <li><a href="#explore"  class="nav__link" data-section="explore">Collections</a></li>
+          <li><a href="#catalogue" class="nav__link" data-section="catalogue">Photos</a></li>
+          <li><a href="#stories"  class="nav__link" data-section="stories">Gazette</a></li>
           <li><a href="#timeline" class="nav__link" data-section="timeline">Timeline</a></li>
           <li><a href="#about"    class="nav__link" data-section="about">About</a></li>
         </ul>
@@ -83,95 +91,96 @@
 
   <main id="main-content">
 
-    <section class="hero" id="home" aria-labelledby="hero-headline">
+    <section class="hero hero--enter" id="home" aria-labelledby="hero-headline">
+      <div class="hero__content">
+        <div class="hero__meta">
+          <span class="hero__label-line" aria-hidden="true"></span>
+          <span class="hero__catalogue-no">Archive / Collection 001</span>
+        </div>
+        <h1 class="hero__headline" id="hero-headline">
+          <span class="hero__headline-top">A NATION IN<br />FRAGMENTS.</span>
+          <span class="hero__headline-accent">A MEMORY IN<br />MOTION.</span>
+        </h1>
+        <p class="hero__body">An evolving archive of Nigerian photography, sound, style and visual culture.</p>
+        <div class="hero__cta">
+          <a href="#explore" class="btn btn--primary" aria-label="Explore the Archive collections">Explore the collections <span aria-hidden="true">↗</span></a>
+          <a href="#catalogue" class="btn btn--ghost">Browse the photos</a>
+        </div>
+        <p class="hero__annotation" id="hero-annotation">
+          <span class="hero__annotation-mark">01 /</span>
+          <span class="hero__annotation-text">Lagos — photographic memory</span>
+        </p>
+      </div>
 
-      <div class="hero__collage" aria-hidden="true">
-
-        <div class="hero__img hero__img--main">
+      <div class="hero__collage" aria-label="A layered arrangement of archival images and print">
+        <figure class="hero__img hero__img--main">
           <picture>
             <source srcset="assets/images/optimized/hero-main.webp" type="image/webp" />
             <img src="assets/images/optimized/hero-main.jpg"
-                 alt=""
-                 width="1600" height="1600"
-                 loading="eager"
-                 fetchpriority="high"
-                 decoding="async" />
+                 alt="Chief and household at Ifako, Calabar, late 19th century"
+                 width="1600" height="1600" loading="eager" fetchpriority="high" decoding="async" />
           </picture>
-        </div>
-
-        <div class="hero__img hero__img--accent1">
+          <figcaption>Chief and household at Ifako, Calabar · late 19th century</figcaption>
+        </figure>
+        <figure class="hero__img hero__img--accent1">
           <picture>
             <source srcset="assets/images/optimized/hero-accent-1.webp" type="image/webp" />
             <img src="assets/images/optimized/hero-accent-1.jpg"
-                 alt=""
-                 width="600" height="750"
-                 loading="eager"
-                 fetchpriority="low"
-                 decoding="async" />
+                 alt="The Ransome-Kuti family, photographed circa 1940"
+                 width="600" height="750" loading="eager" fetchpriority="low" decoding="async" />
           </picture>
-        </div>
-
-        <div class="hero__img hero__img--accent2">
+          <figcaption>Family archive · c. 1940</figcaption>
+        </figure>
+        <figure class="hero__img hero__img--accent2">
           <picture>
             <source srcset="assets/images/optimized/hero-accent-2.webp" type="image/webp" />
             <img src="assets/images/optimized/hero-accent-2.jpg"
-                 alt=""
-                 width="500" height="600"
-                 loading="eager"
-                 fetchpriority="low"
-                 decoding="async" />
+                 alt="Ife bronze head, dated approximately to the 12th–15th centuries"
+                 width="500" height="600" loading="eager" fetchpriority="low" decoding="async" />
           </picture>
+          <figcaption>Ife · c. 12th–15th century</figcaption>
+        </figure>
+        <div class="hero__clipping" aria-label="Newspaper-inspired catalogue note">
+          <span>THE ARCHIVE GAZETTE / NO. 01</span>
+          <strong>Memory<br />is a place.</strong>
+          <i aria-hidden="true"></i>
+          <small>Photographs / sound / objects / stories</small>
         </div>
-
-        <div class="hero__grain" aria-hidden="true"></div>
+        <span class="hero__stamp" aria-hidden="true">FILE<br />001—CAL</span>
+        <span class="hero__textile" aria-hidden="true"></span>
       </div>
-
-      <div class="hero__content">
-        <div class="hero__label" aria-hidden="true">
-          <span class="hero__label-line"></span>
-          <span>Est. 2024 &mdash; Lagos, Nigeria</span>
-        </div>
-
-        <h1 class="hero__headline" id="hero-headline">
-          <span class="hero__headline-top">THE PAST IS STILL</span>
-          <span class="hero__headline-accent">MAKING NOISE.</span>
-        </h1>
-
-        <p class="hero__body">
-          A digital museum celebrating Nigeria's creative history — from the cameras that captured our moments, to the sounds, styles and designs that shaped our identity.
-        </p>
-
-        <div class="hero__cta">
-          <a href="#explore" class="btn btn--primary" aria-label="Explore the Archive collections">
-            Explore the Archive
-          </a>
-          <a href="#stories" class="btn btn--ghost">Featured Stories</a>
-        </div>
-
     </section>
+
+    <div class="archive-marquee" aria-hidden="true">
+      <div class="archive-marquee__track">
+        <span>Photography</span><span class="archive-marquee__dot">◆</span>
+        <span>Music</span><span class="archive-marquee__dot">◆</span>
+        <span>Fashion</span><span class="archive-marquee__dot">◆</span>
+        <span>Design</span><span class="archive-marquee__dot">◆</span>
+        <span>Lagos Portraits</span><span class="archive-marquee__dot">◆</span>
+        <span>Afrobeat</span><span class="archive-marquee__dot">◆</span>
+        <span>Textile Arts</span><span class="archive-marquee__dot">◆</span>
+        <span>Studio Archives</span><span class="archive-marquee__dot">◆</span>
+        <span>Photography</span><span class="archive-marquee__dot">◆</span>
+        <span>Music</span><span class="archive-marquee__dot">◆</span>
+        <span>Fashion</span><span class="archive-marquee__dot">◆</span>
+        <span>Design</span><span class="archive-marquee__dot">◆</span>
+        <span>Lagos Portraits</span><span class="archive-marquee__dot">◆</span>
+        <span>Afrobeat</span><span class="archive-marquee__dot">◆</span>
+        <span>Textile Arts</span><span class="archive-marquee__dot">◆</span>
+        <span>Studio Archives</span><span class="archive-marquee__dot">◆</span>
+      </div>
+    </div>
 
     <section class="explore" id="explore" aria-labelledby="explore-heading">
       <div class="container">
 
         <div class="section-intro">
-          <span class="section-label">Collections</span>
-          <h2 class="section-heading" id="explore-heading">EXPLORE THE ARCHIVE</h2>
+          <span class="section-label">Four rooms / one living archive</span>
+          <h2 class="section-heading" id="explore-heading">A COLLECTION OF MANY VOICES.</h2>
           <p class="section-subheading">
-            Four creative disciplines. One incredible story. Discover the people, movements and moments that shaped Nigeria's creative legacy.
+            Each collection has its own material, rhythm and point of view. Browse Nigerian photography, sound, textiles and design as distinct histories.
           </p>
-        </div>
-
-        <div class="filter-tabs" role="tablist" aria-label="Filter stories by discipline">
-          <button class="filter-tab filter-tab--active" role="tab" data-filter="all"
-                  aria-selected="true" aria-controls="stories-grid">All</button>
-          <button class="filter-tab" role="tab" data-filter="photography"
-                  aria-selected="false" aria-controls="stories-grid">Photography</button>
-          <button class="filter-tab" role="tab" data-filter="music"
-                  aria-selected="false" aria-controls="stories-grid">Music</button>
-          <button class="filter-tab" role="tab" data-filter="fashion"
-                  aria-selected="false" aria-controls="stories-grid">Fashion</button>
-          <button class="filter-tab" role="tab" data-filter="design"
-                  aria-selected="false" aria-controls="stories-grid">Design</button>
         </div>
 
         <div class="collections" role="list">
@@ -274,9 +283,24 @@
 
         </div>
 
-        <div class="photo-grid" aria-label="Archive photo collection" role="list">
+        <div class="catalogue-intro section-intro" id="catalogue" aria-labelledby="catalogue-heading">
+          <span class="section-label">The photo collection</span>
+          <h2 class="section-heading" id="catalogue-heading">PHOTOGRAPHS THROUGH TIME.</h2>
+          <p class="section-subheading">
+            Browse Nigerian photographs from different eras. Open an image to learn its story, date and available source details.
+          </p>
+        </div>
 
-          <figure class="photo-grid__item" role="listitem" data-discipline="photography">
+        <details class="archive-drawer">
+          <summary class="archive-drawer__handle">
+            <span><small>PHOTO COLLECTION</small> Browse the photographs</span>
+            <span class="archive-drawer__instruction">Show / hide photographs</span>
+          </summary>
+          <div class="photo-grid photo-grid--contact" aria-label="Archive photo collection" role="group">
+
+          <figure class="photo-grid__item photo-grid__item--artefact" role="button" data-discipline="photography"
+                  data-artefact="photo-tinubu-sq" tabindex="0"
+                  aria-label="Open catalogue entry: Tinubu Square, Lagos Island, 2014">
             <picture>
               <source srcset="assets/images/optimized/photo-tinubu-sq.webp" type="image/webp" />
               <img src="assets/images/optimized/photo-tinubu-sq.jpg"
@@ -286,7 +310,9 @@
             <figcaption>Tinubu Square, Lagos Island <span>2014</span></figcaption>
           </figure>
 
-          <figure class="photo-grid__item" role="listitem" data-discipline="photography">
+          <figure class="photo-grid__item photo-grid__item--artefact" role="button" data-discipline="photography"
+                  data-artefact="photo-lagos-bookshop" tabindex="0"
+                  aria-label="Open catalogue entry: Igbosere Road book stalls, Lagos Island, 2010">
             <picture>
               <source srcset="assets/images/optimized/photo-lagos-bookshop.webp" type="image/webp" />
               <img src="assets/images/optimized/photo-lagos-bookshop.jpg"
@@ -296,7 +322,9 @@
             <figcaption>Igbosere Road book stalls, Lagos Island <span>2010</span></figcaption>
           </figure>
 
-          <figure class="photo-grid__item" role="listitem" data-discipline="photography">
+          <figure class="photo-grid__item photo-grid__item--artefact" role="button" data-discipline="photography"
+                  data-artefact="photo-lagos-market" tabindex="0"
+                  aria-label="Open catalogue entry: Lagos market scene">
             <picture>
               <source srcset="assets/images/optimized/photo-lagos-market.webp" type="image/webp" />
               <img src="assets/images/optimized/photo-lagos-market.jpg"
@@ -306,7 +334,57 @@
             <figcaption>Lagos market scene</figcaption>
           </figure>
 
-          <figure class="photo-grid__item" role="listitem" data-discipline="music">
+          <figure class="photo-grid__item photo-grid__item--artefact" role="button" data-discipline="photography"
+                  data-artefact="photo-ransome-kuti-family" tabindex="0"
+                  aria-label="Open photo: The Ransome-Kuti family, circa 1940">
+            <picture>
+              <source srcset="assets/images/optimized/hero-accent-1.webp" type="image/webp" />
+              <img src="assets/images/optimized/hero-accent-1.jpg"
+                   alt="The Ransome-Kuti family, including a young Fela Kuti, photographed circa 1940"
+                   loading="lazy" width="600" height="750" />
+            </picture>
+            <figcaption>The Ransome-Kuti family <span>c. 1940</span></figcaption>
+          </figure>
+
+          <figure class="photo-grid__item photo-grid__item--artefact" role="button" data-discipline="photography"
+                  data-artefact="photo-kano-market-1960" tabindex="0"
+                  aria-label="Open photo: Men in traditional attire at Kano market, 1960">
+            <picture>
+              <source srcset="assets/images/optimized/fashion-kano-1960.webp" type="image/webp" />
+              <img src="assets/images/optimized/fashion-kano-1960.jpg"
+                   alt="Men in traditional northern Nigerian attire at Kano market, 1960"
+                   loading="lazy" width="800" height="600" />
+            </picture>
+            <figcaption>Kano market <span>1960</span></figcaption>
+          </figure>
+
+          <figure class="photo-grid__item photo-grid__item--artefact" role="button" data-discipline="photography"
+                  data-artefact="photo-obafemi-awolowo" tabindex="0"
+                  aria-label="Open photo: Obafemi Awolowo, independence era">
+            <picture>
+              <source srcset="assets/images/optimized/timeline-1960s.webp" type="image/webp" />
+              <img src="assets/images/optimized/timeline-1960s.jpg"
+                   alt="Obafemi Awolowo, Nigerian independence-era statesman"
+                   loading="lazy" width="640" height="400" />
+            </picture>
+            <figcaption>Obafemi Awolowo</figcaption>
+          </figure>
+
+          <figure class="photo-grid__item photo-grid__item--artefact" role="button" data-discipline="photography"
+                  data-artefact="photo-tafawa-balewa" tabindex="0"
+                  aria-label="Open photo: Sir Abubakar Tafawa Balewa with the Mayor of Port Harcourt">
+            <picture>
+              <source srcset="assets/images/optimized/about-main.webp" type="image/webp" />
+              <img src="assets/images/optimized/about-main.jpg"
+                   alt="Sir Abubakar Tafawa Balewa with the Mayor of Port Harcourt"
+                   loading="lazy" width="800" height="1000" />
+            </picture>
+            <figcaption>Sir Abubakar Tafawa Balewa</figcaption>
+          </figure>
+
+          <figure class="photo-grid__item photo-grid__item--artefact" role="button" data-discipline="music"
+                  data-artefact="music-fela-1986" tabindex="0"
+                  aria-label="Open catalogue entry: Fela Kuti, circa 1986">
             <picture>
               <source srcset="assets/images/optimized/music-fela-1986.webp" type="image/webp" />
               <img src="assets/images/optimized/music-fela-1986.jpg"
@@ -316,7 +394,9 @@
             <figcaption>Fela Kuti, c.1986</figcaption>
           </figure>
 
-          <figure class="photo-grid__item" role="listitem" data-discipline="music">
+          <figure class="photo-grid__item photo-grid__item--artefact" role="button" data-discipline="music"
+                  data-artefact="music-king-sunny-ade" tabindex="0"
+                  aria-label="Open catalogue entry: King Sunny Ade">
             <picture>
               <source srcset="assets/images/optimized/music-king-sunny-ade.webp" type="image/webp" />
               <img src="assets/images/optimized/music-king-sunny-ade.jpg"
@@ -326,7 +406,9 @@
             <figcaption>King Sunny Ade</figcaption>
           </figure>
 
-          <figure class="photo-grid__item" role="listitem" data-discipline="music">
+          <figure class="photo-grid__item photo-grid__item--artefact" role="button" data-discipline="music"
+                  data-artefact="music-bata-drum" tabindex="0"
+                  aria-label="Open catalogue entry: Bàtá drum — Rhythms of the Gods">
             <picture>
               <source srcset="assets/images/optimized/music-bata-drum.webp" type="image/webp" />
               <img src="assets/images/optimized/music-bata-drum.jpg"
@@ -336,7 +418,9 @@
             <figcaption>Bàtá drum — Rhythms of the Gods</figcaption>
           </figure>
 
-          <figure class="photo-grid__item" role="listitem" data-discipline="music">
+          <figure class="photo-grid__item photo-grid__item--artefact" role="button" data-discipline="music"
+                  data-artefact="music-burna-boy" tabindex="0"
+                  aria-label="Open catalogue entry: Burna Boy, Nativeland Concert, Lagos, 2016">
             <picture>
               <source srcset="assets/images/optimized/music-burna-boy.webp" type="image/webp" />
               <img src="assets/images/optimized/music-burna-boy.jpg"
@@ -346,7 +430,9 @@
             <figcaption>Burna Boy, Nativeland Concert, Lagos <span>2016</span></figcaption>
           </figure>
 
-          <figure class="photo-grid__item" role="listitem" data-discipline="fashion">
+          <figure class="photo-grid__item photo-grid__item--artefact" role="button" data-discipline="fashion"
+                  data-artefact="fashion-aso-oke" tabindex="0"
+                  aria-label="Open catalogue entry: Aso-oke weaving, Yorubaland">
             <picture>
               <source srcset="assets/images/optimized/fashion-aso-oke.webp" type="image/webp" />
               <img src="assets/images/optimized/fashion-aso-oke.jpg"
@@ -356,7 +442,9 @@
             <figcaption>Aso-oke weaving, Yorubaland</figcaption>
           </figure>
 
-          <figure class="photo-grid__item" role="listitem" data-discipline="fashion">
+          <figure class="photo-grid__item photo-grid__item--artefact" role="button" data-discipline="fashion"
+                  data-artefact="fashion-yoruba-bride" tabindex="0"
+                  aria-label="Open catalogue entry: Yoruba bride in traditional attire">
             <picture>
               <source srcset="assets/images/optimized/fashion-yoruba-bride.webp" type="image/webp" />
               <img src="assets/images/optimized/fashion-yoruba-bride.jpg"
@@ -366,7 +454,9 @@
             <figcaption>Yoruba bride in traditional attire</figcaption>
           </figure>
 
-          <figure class="photo-grid__item" role="listitem" data-discipline="fashion">
+          <figure class="photo-grid__item photo-grid__item--artefact" role="button" data-discipline="fashion"
+                  data-artefact="fashion-ibibio-attire" tabindex="0"
+                  aria-label="Open catalogue entry: Ibibio traditional attire">
             <picture>
               <source srcset="assets/images/optimized/fashion-ibibio-attire.webp" type="image/webp" />
               <img src="assets/images/optimized/fashion-ibibio-attire.jpg"
@@ -376,7 +466,9 @@
             <figcaption>Ibibio traditional attire</figcaption>
           </figure>
 
-          <figure class="photo-grid__item" role="listitem" data-discipline="fashion">
+          <figure class="photo-grid__item photo-grid__item--artefact" role="button" data-discipline="fashion"
+                  data-artefact="fashion-masquerade" tabindex="0"
+                  aria-label="Open catalogue entry: Masorantan Masquerade Festival, Kwara State">
             <picture>
               <source srcset="assets/images/optimized/fashion-masquerade.webp" type="image/webp" />
               <img src="assets/images/optimized/fashion-masquerade.jpg"
@@ -386,7 +478,9 @@
             <figcaption>Masorantan Masquerade Festival, Kwara State</figcaption>
           </figure>
 
-          <figure class="photo-grid__item" role="listitem" data-discipline="fashion">
+          <figure class="photo-grid__item photo-grid__item--artefact" role="button" data-discipline="fashion"
+                  data-artefact="fashion-urhobo" tabindex="0"
+                  aria-label="Open catalogue entry: Urhobo traditional dress">
             <picture>
               <source srcset="assets/images/optimized/fashion-urhobo.webp" type="image/webp" />
               <img src="assets/images/optimized/fashion-urhobo.jpg"
@@ -396,7 +490,9 @@
             <figcaption>Urhobo traditional dress</figcaption>
           </figure>
 
-          <figure class="photo-grid__item" role="listitem" data-discipline="design">
+          <figure class="photo-grid__item photo-grid__item--artefact" role="button" data-discipline="design"
+                  data-artefact="design-indigo-dye" tabindex="0"
+                  aria-label="Open catalogue entry: Indigo dyeing workshop, Nigeria">
             <picture>
               <source srcset="assets/images/optimized/design-indigo-dye.webp" type="image/webp" />
               <img src="assets/images/optimized/design-indigo-dye.jpg"
@@ -406,7 +502,9 @@
             <figcaption>Indigo dyeing workshop, Nigeria</figcaption>
           </figure>
 
-          <figure class="photo-grid__item" role="listitem" data-discipline="design">
+          <figure class="photo-grid__item photo-grid__item--artefact" role="button" data-discipline="design"
+                  data-artefact="design-leatherwork" tabindex="0"
+                  aria-label="Open catalogue entry: Leatherwork and saddle-making, Minna">
             <picture>
               <source srcset="assets/images/optimized/design-leatherwork.webp" type="image/webp" />
               <img src="assets/images/optimized/design-leatherwork.jpg"
@@ -416,7 +514,9 @@
             <figcaption>Leatherwork and saddle-making, Minna</figcaption>
           </figure>
 
-          <figure class="photo-grid__item" role="listitem" data-discipline="design">
+          <figure class="photo-grid__item photo-grid__item--artefact" role="button" data-discipline="design"
+                  data-artefact="design-earthenware" tabindex="0"
+                  aria-label="Open catalogue entry: Hand-made earthenware pots, Zaria road, 1981">
             <picture>
               <source srcset="assets/images/optimized/design-earthenware.webp" type="image/webp" />
               <img src="assets/images/optimized/design-earthenware.jpg"
@@ -426,7 +526,9 @@
             <figcaption>Hand-made earthenware pots, Zaria road <span>1981</span></figcaption>
           </figure>
 
-          <figure class="photo-grid__item" role="listitem" data-discipline="design">
+          <figure class="photo-grid__item photo-grid__item--artefact" role="button" data-discipline="design"
+                  data-artefact="design-abuja-pottery" tabindex="0"
+                  aria-label="Open catalogue entry: Abuja pottery, 1960">
             <picture>
               <source srcset="assets/images/optimized/design-abuja-pottery.webp" type="image/webp" />
               <img src="assets/images/optimized/design-abuja-pottery.jpg"
@@ -436,7 +538,9 @@
             <figcaption>Abuja pottery <span>1960</span></figcaption>
           </figure>
 
-          <figure class="photo-grid__item" role="listitem" data-discipline="design">
+          <figure class="photo-grid__item photo-grid__item--artefact" role="button" data-discipline="design"
+                  data-artefact="design-bida-metalwork" tabindex="0"
+                  aria-label="Open catalogue entry: Bida metalwork, 1960">
             <picture>
               <source srcset="assets/images/optimized/design-bida-metalwork.webp" type="image/webp" />
               <img src="assets/images/optimized/design-bida-metalwork.jpg"
@@ -446,29 +550,79 @@
             <figcaption>Bida metalwork, carved calabashes <span>1960</span></figcaption>
           </figure>
 
+          </div>
+        </details>
+
+      </div>
+    </section>
+
+    <section class="archive-compare-section" id="compare" aria-labelledby="compare-heading">
+      <div class="container archive-compare__layout">
+        <div class="archive-compare__intro">
+          <span class="section-label">Two Lagos frames / a shifting view</span>
+          <h2 class="section-heading" id="compare-heading">ONE CITY.<br />MANY WINDOWS.</h2>
+          <p class="section-subheading">
+            Move the archive lens across two photographs from Lagos. These are separate places and dates, paired as a visual study—not a before-and-after.
+          </p>
+          <a class="archive-compare__link" href="#catalogue">Browse more photographs <span aria-hidden="true">↗</span></a>
         </div>
 
+        <div class="archive-compare__work">
+          <div class="archive-compare" id="archive-compare" style="--compare-position: 52%;">
+            <figure class="archive-compare__base">
+              <img src="assets/images/optimized/photo-tinubu-sq.webp"
+                   alt="Tinubu Square, Lagos Island, photographed in 2014 by Jeremy Weate"
+                   width="800" height="600" loading="lazy" />
+              <figcaption><span>Tinubu Square</span><small>Lagos Island / 2014</small></figcaption>
+            </figure>
+            <figure class="archive-compare__reveal">
+              <img src="assets/images/optimized/photo-lagos-bookshop.webp"
+                   alt="Book stalls on Igbosere Road, Lagos Island, photographed in 2010"
+                   width="800" height="600" loading="lazy" />
+              <figcaption><span>Igbosere Road</span><small>Lagos Island / 2010</small></figcaption>
+            </figure>
+            <span class="archive-compare__divider" aria-hidden="true"><span>↔</span></span>
+            <label class="visually-hidden" for="archive-compare-range">Reveal the Igbosere Road photograph over the Tinubu Square photograph</label>
+            <input class="archive-compare__range" id="archive-compare-range" type="range"
+                   min="8" max="92" value="52" aria-describedby="compare-context" />
+          </div>
+          <p class="archive-compare__context" id="compare-context">
+            Archival study · two distinct street photographs, captured four years apart.
+          </p>
+        </div>
       </div>
     </section>
 
     <section class="stories" id="stories" aria-labelledby="stories-heading">
       <div class="container">
 
-        <div class="section-intro section-intro--light">
-          <span class="section-label section-label--red">Featured Stories</span>
-          <h2 class="section-heading section-heading--light" id="stories-heading">
-            ICONIC MOMENTS.<br />LASTING IMPACT.
-          </h2>
-          <p class="section-subheading section-subheading--light">
-            Step into the stories of Nigeria's creative pioneers, visionary artists and cultural movements.
-          </p>
+        <div class="filter-tabs" role="group" aria-label="Filter stories by discipline">
+          <button class="filter-tab filter-tab--active" type="button" data-filter="all"
+                  aria-pressed="true">All</button>
+          <button class="filter-tab" type="button" data-filter="photography"
+                  aria-pressed="false">Photography</button>
+          <button class="filter-tab" type="button" data-filter="music"
+                  aria-pressed="false">Music</button>
+          <button class="filter-tab" type="button" data-filter="fashion"
+                  aria-pressed="false">Fashion</button>
+          <button class="filter-tab" type="button" data-filter="design"
+                  aria-pressed="false">Design</button>
+        </div>
+
+        <div class="gazette-masthead">
+          <div>
+            <span class="section-label">Nigerian stories / Lagos, Nigeria</span>
+            <h2 class="gazette-masthead__title" id="stories-heading">THE ARCHIVE GAZETTE</h2>
+            <p class="gazette-masthead__dek">Documenting the people, images, sounds and ideas that shaped Nigerian creative culture.</p>
+          </div>
+          <p class="gazette-masthead__issue">SPECIAL COLLECTION<br /><strong>NO. 001</strong><br />PHOTOGRAPHY · SOUND · CULTURE</p>
         </div>
 
         <div class="stories-grid" id="stories-grid" aria-live="polite" aria-label="Featured stories">
 
           <article class="story-card story-card--hero" data-discipline="photography"
                    data-story="faces-of-lagos" tabindex="0" role="button"
-                   aria-label="Read story: The Faces of Lagos">
+                   aria-label="Read story: A Portrait from Calabar">
             <div class="story-card__image">
               <picture>
                 <source srcset="assets/images/optimized/story-hero-photography.webp" type="image/webp" />
@@ -479,8 +633,8 @@
             </div>
             <div class="story-card__body">
               <span class="story-card__category">Photography</span>
-              <h3 class="story-card__title">The Faces of Lagos</h3>
-              <p class="story-card__excerpt">Before high-rises changed the skyline, Lagos wore its soul on its streets. These photographs — from the 1850s to 1970s — capture a city mid-transformation, balancing heritage with ambition.</p>
+              <h3 class="story-card__title">A Portrait from Calabar</h3>
+              <p class="story-card__excerpt">A late-19th-century group portrait at Ifako, Calabar. The photographer is unknown; the image preserves a specific record of a household and its time.</p>
               <span class="story-card__read-cta">Read Story <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
             </div>
           </article>
@@ -499,7 +653,7 @@
             <div class="story-card__body">
               <span class="story-card__category">Music</span>
               <h3 class="story-card__title">The Rise of Afrobeat</h3>
-              <p class="story-card__excerpt">Fela Anikulapo-Kuti fused jazz, funk and Yoruba tradition into a form of protest that outlived its creator. By the late 1970s, the Afrika Shrine was more than a venue — it was a political front line.</p>
+              <p class="story-card__excerpt">Fela Anikulapo-Kuti developed Afrobeat through an encounter between West African musical traditions, jazz and funk. The Afrika Shrine became an important performance space closely associated with his music.</p>
               <span class="story-card__read-cta">Read Story <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
             </div>
           </article>
@@ -518,7 +672,7 @@
             <div class="story-card__body">
               <span class="story-card__category">Fashion</span>
               <h3 class="story-card__title">Style Through the Decades</h3>
-              <p class="story-card__excerpt">From hand-woven aso-oke and raffia court dress to the bold cuts of Afropunk Lagos — Nigerian fashion has always carried cultural argument inside its seams.</p>
+              <p class="story-card__excerpt">Cloth and dress traditions differ across Nigeria's many communities. This collection includes aso-oke weaving, Yoruba wedding attire, Ibibio dress and Urhobo clothing.</p>
               <span class="story-card__read-cta">Read Story <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
             </div>
           </article>
@@ -537,7 +691,7 @@
             <div class="story-card__body">
               <span class="story-card__category">Design</span>
               <h3 class="story-card__title">Nigerian Design: Then &amp; Now</h3>
-              <p class="story-card__excerpt">From the geometric vocabulary of Uli body art to the hand-lettered commerce of 1960s Lagos signage — design has always been how Nigeria explained itself to itself.</p>
+              <p class="story-card__excerpt">Collection objects include Ife sculpture, indigo dyeing, leatherwork, earthenware and Bida metalwork, each with its own material history.</p>
               <span class="story-card__read-cta">Read Story <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
             </div>
           </article>
@@ -556,12 +710,19 @@
 
         <div class="section-intro">
           <span class="section-label">Timeline</span>
-          <h2 class="section-heading" id="timeline-heading">
-            A JOURNEY THROUGH NIGERIA'S<br class="br-desktop" /> CREATIVE HISTORY.
-          </h2>
+          <h2 class="section-heading section-heading--light" id="timeline-heading">A LIVING TIMELINE.</h2>
           <p class="section-subheading">
-            From independence to the digital age — key moments and milestones that shaped our creative identity.
+            Select a period to move through the collection. Dates distinguish historical periods from dated objects.
           </p>
+        </div>
+
+        <div class="timeline-periods" role="group" aria-label="Choose a timeline period">
+          <button class="timeline-period is-active" type="button" data-era-target="pre-1960" aria-current="true">Before 1960</button>
+          <button class="timeline-period" type="button" data-era-target="1960s">1960s</button>
+          <button class="timeline-period" type="button" data-era-target="1970s">1970s</button>
+          <button class="timeline-period" type="button" data-era-target="1980s">1980s</button>
+          <button class="timeline-period" type="button" data-era-target="1990s">1990s</button>
+          <button class="timeline-period" type="button" data-era-target="2000s">2000s–Today</button>
         </div>
 
         <div class="timeline-controls" aria-label="Timeline navigation">
@@ -639,7 +800,7 @@
                 </div>
                 <div class="timeline-item__content">
                   <h3 class="timeline-item__period">Afrobeat &amp; New Expression</h3>
-                  <p class="timeline-item__text">Fela Kuti's Afrobeat shook stages and government buildings alike. FESTAC '77 brought 15,000 African and diaspora artists to Lagos, announcing Nigeria's cultural ambition to the world.</p>
+                  <p class="timeline-item__text">Fela Kuti's Afrobeat became a forceful musical voice. FESTAC '77 brought participants from across Africa and the diaspora to Lagos for a landmark arts and culture festival.</p>
                 </div>
               </div>
             </li>
@@ -677,13 +838,14 @@
                   <picture>
                     <source srcset="assets/images/optimized/timeline-1990s.webp" type="image/webp" />
                     <img src="assets/images/optimized/timeline-1990s.jpg"
-                         alt="Traditional Abuja pottery — Nigerian craft heritage"
+                         alt="Traditional Abuja pottery photographed in 1960, included as a separate collection object"
                          loading="lazy" width="640" height="400" />
                   </picture>
+                  <span class="timeline-item__image-note">Collection object · 1960</span>
                 </div>
                 <div class="timeline-item__content">
                   <h3 class="timeline-item__period">Expanding Influence</h3>
-                  <p class="timeline-item__text">Nollywood emerged as one of the world's largest film industries. Nigerian music began crossing Atlantic borders, while a resilient creative economy grew despite economic strain and military rule.</p>
+                  <p class="timeline-item__text">The home-video film economy grew during the 1990s, helping Nigerian films reach wide audiences. The Abuja pottery shown here is a separate collection object photographed in 1960, not a photograph from this decade.</p>
                 </div>
               </div>
             </li>
@@ -696,15 +858,15 @@
               <div class="timeline-item__card">
                 <div class="timeline-item__img-wrap">
                   <picture>
-                    <source srcset="assets/images/optimized/timeline-2000s.webp" type="image/webp" />
-                    <img src="assets/images/optimized/timeline-2000s.jpg"
-                         alt="Bida metalwork — Nigerian design tradition"
+                    <source srcset="assets/images/optimized/music-burna-boy.webp" type="image/webp" />
+                    <img src="assets/images/optimized/music-burna-boy.jpg"
+                         alt="Burna Boy performing at Nativeland Concert, Lagos, 2016"
                          loading="lazy" width="640" height="400" />
                   </picture>
                 </div>
                 <div class="timeline-item__content">
                   <h3 class="timeline-item__period">Digital Creativity &amp; Global Stage</h3>
-                  <p class="timeline-item__text">Afrobeats became a global language. Burna Boy, Wizkid and Tems defined a new era. Lagos Art Week and a thriving design scene confirmed Nigeria's place at the centre of African creative culture.</p>
+                  <p class="timeline-item__text">Afrobeats reached wider international audiences, with artists including Burna Boy, Wizkid and Tems carrying Nigerian sounds into new spaces. Film, fashion and design also found audiences well beyond the country.</p>
                 </div>
               </div>
             </li>
@@ -729,7 +891,7 @@
                    width="900" height="1200" />
             </picture>
             <div class="about__image-caption" aria-hidden="true">
-              <span>Lagos, Nigeria — Ongoing</span>
+              <span>Sir Abubakar Tafawa Balewa with the Mayor of Port Harcourt</span>
             </div>
           </div>
 
@@ -739,9 +901,7 @@
             <p class="about__body">
               ARCHIVE exists to preserve the stories behind Nigeria's creative identity. We bring photographs, music, fashion, design and cultural memory into one accessible digital space — connecting generations and giving the next generation a deeper understanding of where our creativity comes from.
             </p>
-            <blockquote class="about__quote">
-              <p>"Our history is not a footnote — it's the foundation."</p>
-            </blockquote>
+            <p class="about__principle">Our history is not a footnote — it's the foundation.</p>
             <a href="#explore" class="btn btn--primary" aria-label="Explore the Archive collections">
               Explore the Collections
             </a>
@@ -768,7 +928,8 @@
           <ul role="list">
             <li><a href="#home"     class="footer__link">Home</a></li>
             <li><a href="#explore"  class="footer__link">Explore</a></li>
-            <li><a href="#stories"  class="footer__link">Stories</a></li>
+            <li><a href="#catalogue" class="footer__link">Catalogue</a></li>
+            <li><a href="#stories"  class="footer__link">Gazette</a></li>
             <li><a href="#timeline" class="footer__link">Timeline</a></li>
             <li><a href="#about"    class="footer__link">About</a></li>
           </ul>
@@ -786,9 +947,6 @@
 
       </div>
 
-      <div class="footer__bottom">
-        <p class="footer__legal">Nigeria's Creative History Museum.</p>
-      </div>
     </div>
   </footer>
 
@@ -830,7 +988,11 @@
     <div class="story-modal__backdrop" id="modal-backdrop"></div>
     <div class="story-modal__panel">
       <div class="story-modal__header">
-        <span class="story-modal__category" id="modal-category"></span>
+        <div class="story-modal__index-meta">
+          <span class="story-modal__category" id="modal-category"></span>
+          <span class="story-modal__catalogue" id="modal-catalogue"></span>
+          <span class="story-modal__date" id="modal-date"></span>
+        </div>
         <button class="story-modal__close" id="modal-close" aria-label="Close story">
           <i class="fa-solid fa-xmark" aria-hidden="true"></i>
           <span class="story-modal__close-fallback" aria-hidden="true">&times;</span>
@@ -838,7 +1000,8 @@
       </div>
       <div class="story-modal__image">
         <div class="story-modal__img-placeholder" id="modal-img-placeholder" aria-hidden="true"></div>
-        <img class="story-modal__img" id="modal-img" src="" alt="" loading="lazy" />
+        <img class="story-modal__img" id="modal-img" src="assets/images/optimized/hero-main.webp"
+             alt="" loading="lazy" width="800" height="600" />
       </div>
       <div class="story-modal__body">
         <h2 class="story-modal__title" id="modal-title"></h2>
