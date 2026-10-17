@@ -828,10 +828,17 @@ summary { -webkit-tap-highlight-color: transparent; }
 
 .archive-drawer__instruction {
   margin-left: auto;
-  font: 500 .55rem/1.3 var(--mono);
-  letter-spacing: .1em;
+  padding: .55rem .7rem;
+  color: var(--paper-light);
+  background: var(--red);
+  font: 700 .62rem/1.3 var(--mono);
+  letter-spacing: .06em;
   text-transform: uppercase;
 }
+
+.archive-drawer__hide-label,
+.archive-drawer[open] .archive-drawer__show-label { display: none; }
+.archive-drawer[open] .archive-drawer__hide-label { display: inline; }
 
 .photo-grid {
   padding: 0 clamp(.6rem, 2vw, 1.4rem) 1.5rem;
@@ -1413,7 +1420,7 @@ summary { -webkit-tap-highlight-color: transparent; }
   .catalogue-intro { margin-top: 4rem; }
   .archive-drawer__handle { min-height: 76px; padding-inline: .85rem; font-size: 1.25rem; }
   .archive-drawer__handle small { display: block; margin: 0 0 .25rem; }
-  .archive-drawer__instruction { display: none; }
+  .archive-drawer__instruction { padding: .45rem .5rem; font-size: .48rem; }
   .photo-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .45rem; padding-inline: .5rem; }
   .photo-grid__item { min-height: 130px; border-width: 4px; }
   .photo-grid__item img { min-height: 130px; max-height: 205px; }
