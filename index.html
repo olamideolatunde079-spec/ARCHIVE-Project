@@ -291,15 +291,12 @@
           </p>
         </div>
 
-        <details class="archive-drawer">
-          <summary class="archive-drawer__handle">
+        <div class="archive-drawer">
+          <div class="archive-drawer__handle">
             <span><small>PHOTO COLLECTION</small> Browse the photographs</span>
-            <span class="archive-drawer__instruction">
-              <span class="archive-drawer__show-label">Show hidden photos</span>
-              <span class="archive-drawer__hide-label">Hide photos</span>
-            </span>
-          </summary>
-          <div class="photo-grid photo-grid--contact" aria-label="Archive photo collection" role="group">
+          </div>
+          <div class="photo-grid photo-grid--contact" id="photo-collection-grid"
+               aria-label="Archive photo collection" role="group">
 
           <figure class="photo-grid__item photo-grid__item--artefact" role="button" data-discipline="photography"
                   data-artefact="photo-tinubu-sq" tabindex="0"
@@ -554,7 +551,11 @@
           </figure>
 
           </div>
-        </details>
+          <button class="photo-collection__toggle" id="photo-collection-toggle" type="button"
+                  aria-controls="photo-collection-grid" aria-expanded="false" hidden>
+            Show more
+          </button>
+        </div>
 
       </div>
     </section>

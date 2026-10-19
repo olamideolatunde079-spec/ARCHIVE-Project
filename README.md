@@ -4,7 +4,7 @@ A responsive digital museum celebrating Nigerian photography, music, fashion, de
 
 ## Visual direction
 
-The current page uses an editorial archive system: layered photographic prints, a newspaper-inspired Gazette, varied collection treatments, a tactile photo collection drawer, and a charcoal exhibition timeline with antique-brass details. Its mineral-sage paper palette and textile-like CSS textures are original to the project; historical photographs remain local assets with source and licence notes in `assets/images/history/IMAGE-CREDITS.md`.
+The current page uses an editorial archive system: layered photographic prints, a newspaper-inspired Gazette, varied collection treatments, an always-visible photo catalogue, and a charcoal exhibition timeline with antique-brass details. Its mineral-sage paper palette and textile-like CSS textures are original to the project; historical photographs remain local assets with source and licence notes in `assets/images/history/IMAGE-CREDITS.md`.
 
 The archive lens pairs two Lagos photographs listed in the project image inventory: Tinubu Square (2014) and Igbosere Road (2010). They show different locations and are not presented as a before-and-after. The comparison slider supports touch, pointer, and keyboard input.
 
@@ -51,7 +51,7 @@ Then open `http://localhost:8000`.
 ## Archive interactions
 
 - The hero combines archival images, a printed catalogue reference, and a slow-moving subject strip. Both the image reveal and strip stop when reduced motion is requested.
-- The photo collection opens from a keyboard-operable drawer; selecting a period moves the timeline to the matching entry.
+- The photo collection remains visible in the catalogue, initially showing ten photographs with a control to reveal the rest. Its keyboard-operable photographs open a details view. Selecting a period moves the timeline to the matching entry.
 - Collection photographs are keyboard-operable and open a details view with collection, date, context, image credit, and a source link where the original file record is available.
 - Collection filters apply to both the catalogue and featured stories.
 - Search and story views support Escape, focus return, focus containment, and background scroll locking.

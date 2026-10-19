@@ -352,6 +352,9 @@ const _storyCards  = [];
 const _photoItems  = [];
 const _filterTabs  = [];
 let   _emptyMsg    = null;
+let   _photoCollectionGrid = null;
+let   _photoCollectionToggle = null;
+let   _photoCollectionExpanded = false;
 
 (function initFilterTabs() {
   const tabs = document.querySelectorAll('.filter-tab');
@@ -368,6 +371,39 @@ let   _emptyMsg    = null;
     });
   });
 })();
+
+(function initPhotoCollectionToggle() {
+  const grid = document.getElementById('photo-collection-grid');
+  const button = document.getElementById('photo-collection-toggle');
+  if (!grid || !button) return;
+
+  const photoCount = grid.querySelectorAll('.photo-grid__item').length;
+  if (photoCount <= 10) return;
+
+  _photoCollectionGrid = grid;
+  _photoCollectionToggle = button;
+  grid.classList.add('has-photo-toggle');
+  updatePhotoCollectionToggle('all');
+  button.addEventListener('click', function () {
+    _photoCollectionExpanded = !_photoCollectionExpanded;
+    grid.classList.toggle('is-expanded', _photoCollectionExpanded);
+    updatePhotoCollectionToggle(
+      document.querySelector('.filter-tab--active')?.getAttribute('data-filter') || 'all'
+    );
+  });
+})();
+
+function updatePhotoCollectionToggle(filter) {
+  if (!_photoCollectionGrid || !_photoCollectionToggle) return;
+
+  const hasMore = _photoItems.some(function (item, index) {
+    return index >= 10 && (filter === 'all' || item.dataset.discipline === filter);
+  });
+
+  _photoCollectionToggle.hidden = !hasMore;
+  _photoCollectionToggle.textContent = _photoCollectionExpanded ? 'Show less' : 'Show more';
+  _photoCollectionToggle.setAttribute('aria-expanded', String(_photoCollectionExpanded));
+}
 
 (function initArchiveCompare() {
   const frame = document.getElementById('archive-compare');
@@ -397,6 +433,7 @@ function applyStoryFilter(filter) {
     const show = filter === 'all' || item.dataset.discipline === filter;
     item.classList.toggle('is-hidden', !show);
   });
+  updatePhotoCollectionToggle(filter);
 
   if (_emptyMsg) _emptyMsg.hidden = visible > 0;
 
